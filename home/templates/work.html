@@ -17,7 +17,7 @@
 
   <title>Title page</title>  
 
-<link href="static/main.3f6952e4.css" rel="stylesheet"></head>
+<link href="/static/main.3f6952e4.css" rel="stylesheet"></head>
 
 <body class="">
 <div id="site-border-left"></div>
@@ -38,10 +38,10 @@
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav ">
           <li><a href="/" title="">01 : Home</a></li>
-          <li><a href="works" title="">02 : Works</a></li>
-          <li><a href="about" title="">03 : About me</a></li>
-          <li><a href="contact" title="">04 : Contact</a></li>
-          <li><a href="components" title="">05 : Components</a></li>
+          <li><a href="/works" title="">02 : Works</a></li>
+          <li><a href="/about" title="">03 : About me</a></li>
+          <li><a href="/contact" title="">04 : Contact</a></li>
+          <li><a href="/components" title="">05 : Components</a></li>
         </ul>
 
 
@@ -63,12 +63,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <img src="static/assets/images/work001-01.jpg" class="img-responsive" alt="">
+        <img src="data:;base64,{{ data.img }}" class="img-responsive" alt="">
         <div class="card-container">
           <div class="text-center">
-            <h1 class="h2">001 : Fringilla sit amet</h1>
+            <h1 class="h2">001 : {{ data.handle }}</h1>
           </div>
-          <p>Nulla facilisi. Vivamus vestibulum, elit in scelerisque ultricies, nisl nunc pulvinar ligula, id sodales arcu sapien in nisi. Quisque libero enim, mattis non augue posuere, venenatis dapibus urna.</p>
+          <p>{{ data.desc }}.</p>
 
           <blockquote>
             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."</p>
