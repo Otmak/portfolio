@@ -4,6 +4,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@font-face {
+  font-family: 'HeliosRG';
+  src: url('assets/HeliosRG.otf');
+}
+
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -11,8 +16,9 @@ html {
 }
 
 body {
-    margin: 0
+    margin: 0;
 }
+
 
 article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary {
     display: block
@@ -279,6 +285,10 @@ button,input,select,textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit
+}
+
+#navbar-collapse .nav li {
+    font-family: 'HeliosRG',Roboto Mono,Helvetica,Arial,sans-serif;
 }
 
 a {
@@ -4750,6 +4760,11 @@ body.minimal {
 .white-text-container h1,.white-text-container h2,.white-text-container h3,.white-text-container h4,.white-text-container h5,.white-text-container p {
     text-shadow: 0 1px 3px #000;
     color: #fff
+}
+
+/*THE GLITCH START*/
+.white-text-container h1, .white-text-container h1 span {
+    font-family: 'HeliosRG', Roboto,Helvetica,Arial,sans-serif;
 }
 
 .white-text-container a {
