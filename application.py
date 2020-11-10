@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, url_for, redirect, j
 from flask_sqlalchemy import SQLAlchemy
 import base64
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/portfolio_db_test_1'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
