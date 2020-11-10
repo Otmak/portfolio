@@ -99,3 +99,7 @@ def contact():
 @app.route('/components')
 def components():
     return render_template('components.html')
+
+
+if __name__ == '__main__':
+    app.run()
