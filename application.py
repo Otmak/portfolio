@@ -2,10 +2,10 @@ from flask import Flask, render_template, request, jsonify, url_for, redirect, j
 from flask_sqlalchemy import SQLAlchemy
 import base64
 
-application = app = Flask(__name__)
+application = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/portfolio_db_test_1'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+# db = SQLAlchemy(application)
 
 
 # class Project(db.Model):
@@ -40,17 +40,17 @@ db = SQLAlchemy(app)
 # db.create_all()
 
 
-@app.route('/', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
 
-@app.route('/about')
+@application.route('/about')
 def about():
     return render_template('about.html')
 
 
-@app.route('/work')
+@application.route('/work')
 def work():
     return render_template('work.html')
 
@@ -86,20 +86,20 @@ def work():
 #     return render_template('works.html', data=body_data)
 
 
-@app.route('/works')
+@application.route('/works')
 def works():
     return render_template('works.html')
 
 
-@app.route('/contact', methods=['GET', 'POST'])
+@application.route('/contact', methods=['GET', 'POST'])
 def contact():
     return render_template('contact.html')
 
 
-@app.route('/components')
+@application.route('/components')
 def components():
     return render_template('components.html')
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run(debug=True)
