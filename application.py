@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, url_for, redirect, json
+from flask import Flask, render_template, make_response, request, jsonify, url_for, redirect, json
 from flask_sqlalchemy import SQLAlchemy
 import base64
 
@@ -99,6 +99,24 @@ def contact():
 @application.route('/components')
 def components():
     return render_template('components.html')
+
+
+@application.errorhandler(404)
+def not_found(e):
+    """Page not found."""
+    return make_response(render_template("404.html"), 404)
+
+
+@application.errorhandler(400)
+def bad_request(e):
+    """Bad request."""
+    return make_response(render_template("400.html"), 400)
+
+
+@application.errorhandler(500)
+def server_error(e):
+    """Internal server error."""
+    return make_response(render_template("500.html"), 500)
 
 
 if __name__ == '__main__':
