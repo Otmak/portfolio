@@ -26,10 +26,9 @@ class Project(db.Model):
     thumbnail = db.Column(db.LargeBinary, nullable=False)
     title = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-
-    # github_link = db.Column(db.String, nullable=True)
-    # link = db.Column(db.String, nullable=True)
-    # time_created = db.Column(db.Integer, nullable=False)
+    github_link = db.Column(db.String, nullable=True)
+    link = db.Column(db.String, nullable=True)
+    time_created = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f'id : {self.id}, desc: {self.title}, descrip : {self.description}, image : {self.thumbnail}'
