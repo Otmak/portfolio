@@ -20,18 +20,30 @@ if 'RDS_HOSTNAME' in os.environ:
 db = SQLAlchemy(application)
 
 
-class Project(db.Model):
-    __tablename__ = 'project'
+# class Project(db.Model):
+#     __tablename__ = 'project'
+#     id = db.Column(db.Integer, primary_key=True)
+#     thumbnail = db.Column(db.LargeBinary, nullable=False)
+#     title = db.Column(db.String, nullable=False)
+#     description = db.Column(db.String, nullable=False)
+#     github_link = db.Column(db.String, nullable=True)
+#     link = db.Column(db.String, nullable=True)
+#     time_created = db.Column(db.Integer, nullable=False)
+#
+#     def __repr__(self):
+#         return f'id : {self.id}, desc: {self.title}, descrip : {self.description}, image : {self.thumbnail}'
+#
+
+
+class Portfolio_test():
+    __tablename__ = 'Portfolio_test'
     id = db.Column(db.Integer, primary_key=True)
-    thumbnail = db.Column(db.LargeBinary, nullable=False)
-    title = db.Column(db.String, nullable=False)
-    description = db.Column(db.String, nullable=False)
-    github_link = db.Column(db.String, nullable=True)
-    link = db.Column(db.String, nullable=True)
-    time_created = db.Column(db.Integer, nullable=False)
+    fullname = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
 
     def __repr__(self):
-        return f'id : {self.id}, desc: {self.title}, descrip : {self.description}, image : {self.thumbnail}'
+        return f'id :{self.id}, fname: {self.fullname}, username: {self.username}, email: {self.email}'
 
 
 db.create_all()
@@ -51,43 +63,58 @@ def about():
     return render_template('about.html')
 
 
-# @application.route('/work')
-# def work():
-#     return render_template('work.html')
-
-
-@application.route('/works/<pid>')
-def work_link(pid):
-    try:
-        get_project = Project.query.filter_by(title=pid).first()
-        data_d = {
-            'id': get_project.id,
-            'title': get_project.title,
-            'desc': get_project.description,
-            'img': base64.b64encode(get_project.thumbnail).decode('ascii')
-        }
-        return render_template('work.html', data=data_d)
-    except:
-        return render_template('404.html')
-
-
-@application.route('/works')
-def works():
+@application.route('/test')
+def test():
     body_data = []
-    all_data1 = Project.query.all()
+    all_data1 = Portfolio_test.query.all()
     # image_data = Project.query.filter_by(id=5).first()
     # image = base64.b64encode(image_data.thumbnail).decode('ascii')
     # print(image_data1)
     for i in all_data1:
         the_data = {
             'id': i.id,
-            'handle': i.title,
-            'desc': i.description,
-            'img': base64.b64encode(i.thumbnail).decode('ascii')
+            'fullname': i.fullname,
+            'username': i.username,
+            'email': i.email,
+            # 'img': base64.b64encode(i.thumbnail).decode('ascii')
         }
         body_data.append(the_data)
     print(body_data)
-    return render_template('works.html', data=body_data)
+    return render_template('test.html', data=body_data)
+
+
+# @application.route('/works/<pid>')
+# def work_link(pid):
+#     try:
+#         get_project = Project.query.filter_by(title=pid).first()
+#         data_d = {
+#             'id': get_project.id,
+#             'title': get_project.title,
+#             'desc': get_project.description,
+#             'img': base64.b64encode(get_project.thumbnail).decode('ascii')
+#         }
+#         return render_template('work.html', data=data_d)
+#     except:
+#         return render_template('404.html')
+
+
+# @application.route('/works')
+# def works():
+#     body_data = []
+#     all_data1 = Project.query.all()
+#     # image_data = Project.query.filter_by(id=5).first()
+#     # image = base64.b64encode(image_data.thumbnail).decode('ascii')
+#     # print(image_data1)
+#     for i in all_data1:
+#         the_data = {
+#             'id': i.id,
+#             'handle': i.title,
+#             'desc': i.description,
+#             'img': base64.b64encode(i.thumbnail).decode('ascii')
+#         }
+#         body_data.append(the_data)
+#     print(body_data)
+#     return render_template('works.html', data=body_data)
 
 
 # @application.route('/works')
