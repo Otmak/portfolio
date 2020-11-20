@@ -1,23 +1,23 @@
 from flask import Flask, render_template, make_response, request, jsonify, url_for, redirect, json
 from flask_sqlalchemy import SQLAlchemy
 import base64
-import os
+import requests
 
 application = Flask(__name__)
-if 'RDS_HOSTNAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'PostgreSQL',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
-# application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/portf_test_db'
-# application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(application)
+# if 'RDS_HOSTNAME' in os.environ:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'PostgreSQL',
+#             'NAME': os.environ['RDS_DB_NAME'],
+#             'USER': os.environ['RDS_USERNAME'],
+#             'PASSWORD': os.environ['RDS_PASSWORD'],
+#             'HOST': os.environ['RDS_HOSTNAME'],
+#             'PORT': os.environ['RDS_PORT'],
+#         }
+#     }
+# # application.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/portf_test_db'
+# # application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db = SQLAlchemy(application)
 
 
 # class Project(db.Model):
@@ -35,21 +35,21 @@ db = SQLAlchemy(application)
 #
 
 
-class Portfolio_test():
-    __tablename__ = 'Portfolio_test'
-    id = db.Column(db.Integer, primary_key=True)
-    fullname = db.Column(db.String, nullable=False)
-    username = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
+# class Portfoliotestdb():
+#     __tablename__ = 'Portfoliotestdb'
+#     id = db.Column(db.Integer, primary_key=True)
+#     fullname = db.Column(db.String, nullable=False)
+#     username = db.Column(db.String, nullable=False)
+#     email = db.Column(db.String, nullable=False)
 
-    def __repr__(self):
-        return f'id :{self.id}, fname: {self.fullname}, username: {self.username}, email: {self.email}'
+#     def __repr__(self):
+#         return f'id :{self.id}, fname: {self.fullname}, username: {self.username}, email: {self.email}'
 
 
-db.create_all()
+# db.create_all()
 
-if 'RDS_HOSTNAME' in os.environ:
-    print(os.environ)
+# if 'RDS_HOSTNAME' in os.environ:
+#     print(os.environ)
 
 
 # print(os.environ)
@@ -63,24 +63,24 @@ def about():
     return render_template('about.html')
 
 
-@application.route('/test')
-def test():
-    body_data = []
-    all_data1 = Portfolio_test.query.all()
-    # image_data = Project.query.filter_by(id=5).first()
-    # image = base64.b64encode(image_data.thumbnail).decode('ascii')
-    # print(image_data1)
-    for i in all_data1:
-        the_data = {
-            'id': i.id,
-            'fullname': i.fullname,
-            'username': i.username,
-            'email': i.email,
-            # 'img': base64.b64encode(i.thumbnail).decode('ascii')
-        }
-        body_data.append(the_data)
-    print(body_data)
-    return render_template('test.html', data=body_data)
+# @application.route('/test')
+# def test():
+#     body_data = []
+#     all_data1 = Portfoliotestdb.query.all()
+#     # image_data = Project.query.filter_by(id=5).first()
+#     # image = base64.b64encode(image_data.thumbnail).decode('ascii')
+#     # print(image_data1)
+#     for i in all_data1:
+#         the_data = {
+#             'id': i.id,
+#             'fullname': i.fullname,
+#             'username': i.username,
+#             'email': i.email,
+#             # 'img': base64.b64encode(i.thumbnail).decode('ascii')
+#         }
+#         body_data.append(the_data)
+#     print(body_data)
+#     return render_template('test.html', data=body_data)
 
 
 # @application.route('/works/<pid>')
@@ -117,9 +117,25 @@ def test():
 #     return render_template('works.html', data=body_data)
 
 
-# @application.route('/works')
-# def works():
-#     return render_template('works.html')
+@application.route('/works')
+def works():
+    url = "https://api.otuma.io/v1/portfolio/data"
+    res = requests.get(url).json()
+    data = []
+    for i in res:
+        # print(type())
+        resData= {
+            'id': i['id'],
+            'title': i['title'],
+            'desc': i['description'],
+            'img': base64.b64encode(str.encode(i['thumbnailurl'])).decode('ascii'),
+            'githubLink': i['githuburl'],
+            'app': i['linktoapp'],
+            'time': i['timecreated']
+        }
+        data.append(resData)
+    # print(res)
+    return render_template('works.html', data=data)
 
 
 @application.route('/contact', methods=['GET', 'POST'])
