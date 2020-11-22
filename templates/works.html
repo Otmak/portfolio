@@ -78,6 +78,7 @@
         <div class="carousel-inner">
             <div class="item active">
                 <div class="row">
+                  <span>{{ image }}</span>
 
                     {% for i in data %}
                         <div class="col-sm-4">
@@ -89,7 +90,7 @@
                             <h4>001/006</h4>
                             <h3>{{ i.title }}</h3>
                             <p>{{ i.desc }}</p>
-                            <a href="/works/{{ i.app }}" target="_blank" title="" class="btn btn-default">Discover</a>
+                            <a href="{{ i.app }}" target="_blank" title="" class="btn btn-default">Discover</a>
                           </div>
                         </div>
                     {% endfor %}
@@ -209,11 +210,11 @@
   </div>
 </footer>
 
-<script>
+<!-- <script>
   document.addEventListener("DOMContentLoaded", function (event) {
      navActivePage();
   });
-</script>
+</script> -->
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
 
@@ -228,6 +229,6 @@
   ga('send', 'pageview');
 </script>
 
---> <script type="text/javascript" src="static/main.70a66962.js"></script></body>
+--><!--  <script type="text/javascript" src="static/main.70a66962.js"></script></body> -->
 
 </html>

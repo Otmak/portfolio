@@ -120,21 +120,8 @@ def about():
 @application.route('/works')
 def works():
     url = "https://api.otuma.io/v1/portfolio/data"
-    res = requests.get(url).json()
-    data = []
-    for i in res:
-        # print(type())
-        resData= {
-            'id': i['id'],
-            'title': i['title'],
-            'desc': i['description'],
-            'img': base64.b64encode(str.encode(i['thumbnailurl'])).decode('ascii'),
-            'githubLink': i['githuburl'],
-            'app': i['linktoapp'],
-            'time': i['timecreated']
-        }
-        data.append(resData)
-    # print(res)
+    data = requests.get(url).json()
+
     return render_template('works.html', data=data)
 
 
