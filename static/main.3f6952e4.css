@@ -5050,13 +5050,13 @@ textarea {
     display: block
 }
 
-.black-image-project-hover img {
+/*.black-image-project-hover img {
     -webkit-filter: contrast(200%) grayscale(100%);
     filter: contrast(200%) grayscale(100%);
     -webkit-transition: all .1s linear;
     -o-transition: all .1s linear;
     transition: all .1s linear
-}
+}*/
 
 .black-image-project-hover img:hover {
     filter: none
