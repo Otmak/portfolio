@@ -1,18 +1,12 @@
-console.log('Working!')
-
 const form = document.getElementById('form')
 const email = document.getElementById('email')
 const subject = document.getElementById('subject');
 const message = document.getElementById('message');
 let checker = true;
 form.addEventListener('submit', (e)=> {
-
-	// validate(email,e)
-	// validate(message,e)
 	if ( validate(email,e) === validate(message,e) === checker ) {
-		console.log('submiting...', checker)
+		console.log('submiting...)
 	}
-
 	// console.log( validate(email,e) === validate(message,e), 'COMPARE', checker )
 	// console.log( 'email:', validate(email,e), 'massage: ',validate(message,e), 'checker:',checker)
 })
