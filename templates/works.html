@@ -83,14 +83,14 @@
                     {% for i in data %}
                         <div class="col-sm-4">
 
-                          <a href="work" title="" class="black-image-project-hover">
-                            <img src="data:;base64,{{ i.img }}" alt="" class="img-responsive">
+                          <a href="/work/{{ i.id }}/{{ i.title }}" title="" class="black-image-project-hover">
+                            <img src="data:;base64,{{ i.img }}" alt="{{ i.title }}" class="img-responsive">
                           </a>
                           <div class="card-container card-container-lg">
-                            <h4>001/006</h4>
+                            <!-- <h4>001/006</h4> -->
                             <h3>{{ i.title }}</h3>
                             <p>{{ i.desc }}</p>
-                            <a href="{{ i.app }}" target="_blank" title="" class="btn btn-default">Discover</a>
+                            <a href="{{ i.app }}" target="_blank" title="" class="btn btn-default">View Live</a>
                           </div>
                         </div>
                     {% endfor %}

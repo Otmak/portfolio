@@ -83,19 +83,26 @@ def about():
 #     return render_template('test.html', data=body_data)
 
 
-# @application.route('/works/<pid>')
-# def work_link(pid):
-#     try:
-#         get_project = Project.query.filter_by(title=pid).first()
-#         data_d = {
-#             'id': get_project.id,
-#             'title': get_project.title,
-#             'desc': get_project.description,
-#             'img': base64.b64encode(get_project.thumbnail).decode('ascii')
-#         }
-#         return render_template('work.html', data=data_d)
-#     except:
-#         return render_template('404.html')
+@application.route('/work/<workID>/<workTitle>')
+def work_link(workID, workTitle):
+    try:
+        url = f"https://api.otuma.io//v1/portfolio/target={workID}"
+        data = requests.get(url).json()
+
+        return render_template('work.html', data=data)
+    except:
+        return render_template('404.html')
+    # try:
+    #     get_project = Project.query.filter_by(title=pid).first()
+    #     data_d = {
+    #         'id': get_project.id,
+    #         'title': get_project.title,
+    #         'desc': get_project.description,
+    #         'img': base64.b64encode(get_project.thumbnail).decode('ascii')
+    #     }
+    #     return render_template('work.html', data=data_d)
+    # except:
+    #     return render_template('404.html')
 
 
 # @application.route('/works')
@@ -119,10 +126,13 @@ def about():
 
 @application.route('/works')
 def works():
-    url = "https://api.otuma.io/v1/portfolio/data"
-    data = requests.get(url).json()
-
-    return render_template('works.html', data=data)
+    try:
+        url = "https://api.otuma.io/v1/portfolio/data"
+        data = requests.get(url).json()
+        print('ENTERING WORK!...............')
+        return render_template('works.html', data=data)
+    except:
+        return render_template('404.html')
 
 
 @application.route('/contact', methods=['GET', 'POST'])
