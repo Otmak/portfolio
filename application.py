@@ -89,6 +89,8 @@ def work_link(workID, workTitle):
         url = f"https://api.otuma.io//v1/portfolio/target={workID}"
         data = requests.get(url).json()
 
+        # print(data[0].title)
+
         return render_template('work.html', data=data)
     except:
         return render_template('404.html')
