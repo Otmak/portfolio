@@ -5,7 +5,7 @@ const message = document.getElementById('message');
 let checker = true;
 form.addEventListener('submit', (e)=> {
 	if ( validate(email,e) === validate(message,e) === checker ) {
-		console.log('submiting...)
+		console.log('submiting...')
 	}
 	// console.log( validate(email,e) === validate(message,e), 'COMPARE', checker )
 	// console.log( 'email:', validate(email,e), 'massage: ',validate(message,e), 'checker:',checker)
