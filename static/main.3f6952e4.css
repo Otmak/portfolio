@@ -1854,6 +1854,11 @@ table td[class*=col-],table th[class*=col-] {
         border: 1px solid #ddd
     }
 
+    .theme-switch-wrapper {
+        display: none;
+
+    }
+
     .table-responsive>.table {
         margin-bottom: 0
     }
@@ -5232,7 +5237,7 @@ textarea {
     transition: all .1s linear
 }
 
-.nav>li>a.active,.nav>li>a:hover {
+/*.nav>li>a.active,.nav>li>a:hover {
     font-weight: 700
 }
 
@@ -5269,6 +5274,6 @@ textarea {
 .list-icons li {
     float: left;
     margin-right: 5px
-}
+}*/
 
 /*# sourceMappingURL=main.70a66962.map*/

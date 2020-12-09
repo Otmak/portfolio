@@ -83,18 +83,18 @@
                     {% for i in data %}
                         <div class="col-sm-4">
 
-                          <a href="/work/{{ i.id }}/{{ i.title }}" title="" class="black-image-project-hover">
+                          <a href="/work/{{ i.id }}/{{ i.title }}" rel="tag" title="" class="black-image-project-hover">
                             <img src="data:;base64,{{ i.img }}" alt="{{ i.title }}" class="img-responsive">
                           </a>
                           <div class="card-container card-container-lg">
                             <!-- <h4>001/006</h4> -->
                             <h3>{{ i.title }}</h3>
                             <p>{{ i.desc }}</p>
-                            <a href="{{ i.app }}" target="_blank" title="" class="btn btn-default">View Live</a>
+                            <a href="{{ i.app }}" target="_blank" rel="external" title="" class="btn btn-default">View Live</a>
                           </div>
                         </div>
                     {% endfor %}
-{#                    <div class="col-sm-4">#}
+<!-- {#                    <div class="col-sm-4">#}
 {##}
 {#                      <a href="work" title="" class="black-image-project-hover">#}
 {#                        <img src="static/assets/images/work01-hover.jpg" alt="" class="img-responsive">#}
@@ -127,7 +127,7 @@
 {#                        <p>Fusce sed hendrerit augue, a rhoncus velit. In non lorem mattis, tempor sem sit amet.</p>#}
 {#                        <a href="work" title="" class="btn btn-default">Discover</a>#}
 {#                      </div>#}
-{#                    </div>#}
+{#                    </div>#} -->
                     
                 </div>
                 <!--/row-->
